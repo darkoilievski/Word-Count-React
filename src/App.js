@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState, useEffect, useRef } from "react";
+import useHook from "./useHook";
+import "./App.css";
 
 function App() {
+  const [
+    state,
+    time,
+    startGame,
+    wordCount,
+    disableButton,
+    typeValue,
+    inputRef,
+    startTheGame,
+  ] = useHook();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>How fast can you type?</h1>
+      <textarea
+        value={state}
+        onChange={typeValue}
+        disabled={!startGame}
+        ref={inputRef}
+      />
+      <h4>Time remaining: {time} </h4>
+      <button onClick={startTheGame} disabled={disableButton}>
+        Start
+      </button>
+      <h1>Word count: {wordCount}</h1>
+      <footer>
+        <p>Created by Darko Ilievski</p>
+      </footer>
+    </>
   );
 }
 
